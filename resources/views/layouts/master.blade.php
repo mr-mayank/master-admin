@@ -35,24 +35,40 @@
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
-          <li class="{{ 'afmin' == request()->path() ? 'active' : '' }} ">
-            <a href="/admin">
+
+          <li class="{{ 'dashboard' == request()->path() ? 'active' : '' }} ">
+            <a href="/dashboard">
               <i class="now-ui-icons design_app"></i>
               <p>Dashboard</p>
             </a>
           </li>
+
+          @can('isAdmin')
+          <li class="{{ 'user' == request()->path() ? 'active' : '' }} ">
+            <a href="/user">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          @endcan
+
+          @can('isMaster')
           <li class="{{ 'role-reg' == request()->path() ? 'active' : '' }} ">
             <a href="/role-reg">
               <i class="now-ui-icons users_single-02"></i>
               <p>User Profile</p>
             </a>
           </li>
+          @endcan
+
+          @can('isMaster')
           <li class="{{ 'register' == request()->path() ? 'active' : '' }} ">
             <a href="/register">
               <i class="now-ui-icons users_single-02"></i>
               <p>Add Role</p>
             </a>
           </li>
+          @endcan
         </ul>
       </div>
     </div>

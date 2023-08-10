@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    protected $redirectTo = '/admin'; // Change this to the desired redirect URL after successful login
+    protected $redirectTo = '/dashboard'; // Change this to the desired redirect URL after successful login
 
     // Show the login form
     public function showLoginForm()
@@ -24,9 +24,11 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed, handled by the middleware
+            $request->session()->put('user', $request->input('email'));
             return redirect()->intended($this->redirectTo);
         }
 
+        
         // Authentication failed, redirect back to the login form with an error message
         return redirect()->route('login')->with('error', 'Invalid credentials. Please try again.');
     }

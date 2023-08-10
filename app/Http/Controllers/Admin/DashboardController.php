@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -52,5 +53,27 @@ class DashboardController extends Controller
         $users->save();
         
         return redirect('/role-reg')->with('status', 'Your Data is Added');
+    }
+
+    public function user_pro()
+    {
+        $user = Auth::user();
+        $details = User::where('email', $user->email)->first();
+        return view('admin.user-edit')->with('users', $details);
+    }
+
+    public function adminupdate(Request $request, $id)
+    {
+        $users = User::find($id);
+        $users->name = $request->input('username');
+        $users->email = $request->input('email');
+        // if($request->input('password') == $request->input('cpassword')){
+        //     $users->password = bcrypt($request->input('password'));
+        // }else{
+        //     return redirect('/user')->with('status', 'Password not match');
+        // }
+        $users->update();
+
+        return redirect('/user')->with('status', 'Your Data is Updated');
     }
 }

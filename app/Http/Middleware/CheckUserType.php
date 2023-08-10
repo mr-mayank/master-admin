@@ -22,9 +22,9 @@ class CheckUserType
                 case "Master":
                     return $next($request);
                 case "Admin":
-                    return redirect('/'); // Lower user
+                    return redirect('/dashboard'); // Lower user
                 default:
-                    return redirect('/'); // Normal user
+                    return redirect('/dashboard'); // Normal user
             }
         }
         return $next($request);

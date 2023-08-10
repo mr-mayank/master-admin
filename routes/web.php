@@ -24,9 +24,7 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::middleware(['auth', 'usertype'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.dashboard');
-    });
+    
 
     Route::get('/role-reg', [DashboardController::class, 'registered']);
     
@@ -41,8 +39,16 @@ Route::middleware(['auth', 'usertype'])->group(function () {
     });
     
     Route::post('/add-user', [DashboardController::class, 'registerUser']);
+
+    
+
+});
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
 });
 
+Route::get('/user', [DashboardController::class, 'user_pro']);
+Route::put('/ad-update/{id}', [DashboardController::class, 'adminupdate']);
 
 
 // Route::get('/role-reg', [DashboardController::class, 'registered']);
