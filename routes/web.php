@@ -47,6 +47,10 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
 
+Route::get('/user-pro',  [DashboardController::class, 'user'] );
+Route::put('/user-update/{id}', [DashboardController::class, 'userupdate']);
+
+
 Route::get('/user', [DashboardController::class, 'user_pro']);
 Route::put('/ad-update/{id}', [DashboardController::class, 'adminupdate']);
 

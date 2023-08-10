@@ -43,6 +43,15 @@
             </a>
           </li>
 
+          @can('isUser')
+          <li class="{{ 'user-pro' == request()->path() ? 'active' : '' }} ">
+            <a href="/user-pro">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          @endcan
+
           @can('isAdmin')
           <li class="{{ 'user' == request()->path() ? 'active' : '' }} ">
             <a href="/user">

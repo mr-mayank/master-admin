@@ -62,6 +62,28 @@ class DashboardController extends Controller
         return view('admin.user-edit')->with('users', $details);
     }
 
+    public function user(){
+        $user = Auth::user();
+        $details = User::where('email', $user->email)->first();
+        return view('admin.user-edit')->with('users', $details);
+    }
+
+    public function userupdate(Request $request, $id)
+    {
+        $users = User::find($id);
+        $users->name = $request->input('username');
+        $users->email = $request->input('email');
+        // if($request->input('password') == $request->input('cpassword')){
+        //     $users->password = bcrypt($request->input('password'));
+        // }else{
+        //     return redirect('/user')->with('status', 'Password not match');
+        // }
+        $users->update();
+
+        return redirect('/user')->with('status', 'Your Data is Updated');
+    }
+
+
     public function adminupdate(Request $request, $id)
     {
         $users = User::find($id);
