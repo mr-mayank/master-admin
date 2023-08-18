@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label for="">Type</label>
                     <select name="type" class="form-control"  >
-                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
                     </select>
                 </div>
 

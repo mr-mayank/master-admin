@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrdersController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +48,12 @@ Route::middleware(['auth', 'usertype'])->group(function () {
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
+
+Route::get('/orders' , [OrdersController::class, 'index']);
+Route::post('/save-order' , [OrdersController::class, 'store']);
+Route::get('/order-edit/{id}' , [OrdersController::class, 'edit']);
+Route::put('/order-update/{id}' , [OrdersController::class, 'update']);
+Route::get('/delete-order/{id}' , [OrdersController::class, 'destroy']);
 
 Route::get('/user-pro',  [DashboardController::class, 'user'] );
 Route::put('/user-update/{id}', [DashboardController::class, 'userupdate']);

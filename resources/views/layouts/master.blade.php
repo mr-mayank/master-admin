@@ -42,6 +42,12 @@
               <p>Dashboard</p>
             </a>
           </li>
+          <li class="{{ 'orders' == request()->path() ? 'active' : '' }} ">
+            <a href="/orders">
+              <i class="now-ui-icons design_app"></i>
+              <p>Orders</p>
+            </a>
+          </li>
 
           @can('isUser')
           <li class="{{ 'user-pro' == request()->path() ? 'active' : '' }} ">
